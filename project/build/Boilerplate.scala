@@ -12,7 +12,7 @@ trait Boilerplate {
       val arities = 2 to 12
 
       def writeFileScalazPackage(fileName: String, source: String): Unit = {
-        val file = (srcManagedScala / "scalaz" / fileName).asFile
+        val file = (srcManagedScala / "org.specs2.internal.scalaz" / fileName).asFile
         write(file, source)
       }
 
@@ -55,7 +55,7 @@ trait Boilerplate {
         tupleWSource
       }
 
-      val source = "package scalaz\n\n" +
+      val source = "package org.specs2.internal.scalaz\n\n" +
               "trait Tuples {\n" +
               "  " + tuples.map("  " +).mkString("\n") +
               "}"
