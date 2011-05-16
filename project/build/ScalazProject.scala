@@ -38,7 +38,7 @@ import Scalaz._
 
 final class ScalazProject(info: ProjectInfo) extends ParentProject(info) with OverridableVersion {
   // Sub-projects
-  lazy val core = project("core", "scalaz-core", new Core(_))
+  lazy val core = project("core", "specs2-scalaz-core", new Core(_))
   lazy val allModules = Seq(core)
 
   /** Publishing */
