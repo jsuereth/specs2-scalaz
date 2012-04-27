@@ -91,7 +91,7 @@ package object effects {
     RegionT[S, P, FinalizerHandle[({type λ[α] = RegionT[S, P, α]})#λ]] =
       RegionT(kleisli(hsIORef => (for {
         refCntIORef <- newIORef(1)
-        val h = RefCountedFinalizer(finalizer, refCntIORef)
+        h = RefCountedFinalizer(finalizer, refCntIORef)
         _ <- hsIORef.mod(h :: _)
       } yield FinalizerHandle[({type λ[α] = RegionT[S, P, α]})#λ](h)).liftIO[P]))
 

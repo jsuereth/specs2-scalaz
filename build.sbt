@@ -5,7 +5,9 @@ version := "6.0.1"
 
 organization := "org.specs2"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.10.0-M2"
+
+crossScalaVersions := Seq("2.9.1-1", "2.9.2-RC2", "2.10.0-M2")
 
 /** Shell */
 shellPrompt := { state => System.getProperty("user.name") + "> " }
@@ -13,8 +15,8 @@ shellPrompt := { state => System.getProperty("user.name") + "> " }
 shellPrompt in ThisBuild := { state => Project.extract(state).currentRef.project + "> " }
 
 /** Dependencies */
-resolvers ++= Seq("snapshots-repo" at "http://scala-tools.org/repo-snapshots", 
-                  "Local Maven Repository" at "file://c:/Documents and Settings/Eric/.m2/repository")
+resolvers ++= Seq("releases" at "http://oss.sonatype.org/content/repositories/releases",
+                  "snapshots" at "http://oss.sonatype.org/content/repositories/snapshots")
 
 /** Compilation */
 javacOptions ++= Seq("-Xmx1812m", "-Xms512m", "-Xss4m")
@@ -43,7 +45,7 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 publishTo <<= version { v: String =>
   val nexus = "https://oss.sonatype.org/"
   if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else                             Some("releases" at nexus + "service/local/staging/deploy/maven2")
+  else                             Some("staging" at nexus + "service/local/staging/deploy/maven2")
 }
 
 publishMavenStyle := true
