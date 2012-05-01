@@ -5,7 +5,7 @@ version := "6.0.1"
 
 organization := "org.specs2"
 
-scalaVersion := "2.10.0-M2"
+scalaVersion := "2.10.0-M3"
 
 crossScalaVersions := Seq("2.9.1-1", "2.9.2-RC2", "2.10.0-M2")
 

@@ -44,3 +44,9 @@ publish-local
 exit
 publish
 exit
+publish
+co
+compile
+~compile
+publish-local
+exit

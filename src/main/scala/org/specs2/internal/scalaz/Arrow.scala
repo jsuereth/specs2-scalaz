@@ -32,7 +32,7 @@ object Arrow {
       case b => f(b)
     }
 
-    def first[B, C, D](a: PartialFunction[B, C]) = {
+    def first[B, C, D](a: PartialFunction[B, C]): PartialFunction[(B, D), (C, D)] = { 
       case (b, d) if a isDefinedAt b => (a(b), d)
     }
 
@@ -46,11 +46,11 @@ object Arrow {
 
     def arrow[B, C](f: B => C) = ☆(f(_) η)
 
-    def first[B, C, D](a: Kleisli[M, B, C]) = ☆ {
+    def first[B, C, D](a: Kleisli[M, B, C]): Kleisli[M, (B, D), (C, D)] = ☆ {
       case (b, d) => a(b) ∘ ((_, d))
     }
 
-    def second[B, C, D](a: Kleisli[M, B, C]) = ☆ {
+    def second[B, C, D](a: Kleisli[M, B, C]): Kleisli[M, (D, B), (D, C)] = ☆ {
       case (d, b) => a(b) ∘ ((d, _))
     }
   }
